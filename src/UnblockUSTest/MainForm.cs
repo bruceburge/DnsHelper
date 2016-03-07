@@ -16,6 +16,8 @@ namespace UnblockUSTest
 {
     public partial class MainForm : Form
     {
+        private NetflixForm _netflixForm;
+
         /// <summary>
         /// The currently selected Network interface card
         /// </summary>
@@ -117,6 +119,17 @@ namespace UnblockUSTest
         private void btnGoToWebsite_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.unblock-us.com/");
+        }
+
+        private void btnNetflixSettings_Click(object sender, EventArgs e)
+        {
+            if(_netflixForm == null || _netflixForm.IsDisposed)
+                this._netflixForm = new NetflixForm();
+
+            if( !this._netflixForm.Visible )
+                this._netflixForm.Show(this);
+
+            this._netflixForm.BringToFront();
         }
     }
 }

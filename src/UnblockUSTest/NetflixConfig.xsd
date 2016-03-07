@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="device_supported" type="xs:string" minOccurs="0" />
+        <xs:element name="country" type="xs:string" minOccurs="0" />
+        <xs:element name="enable_content_header_cache" type="xs:string" minOccurs="0" />
+        <xs:element name="ncts" type="xs:string" minOccurs="0" />
+        <xs:element name="stall_notification_intrplay" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation.locale" type="xs:string" minOccurs="0" />
+        <xs:element name="movie_norminal_to_peak_bandwidth_multiplier" type="xs:string" minOccurs="0" />
+        <xs:element name="movie_peakbandwidth_multiplier" type="xs:string" minOccurs="0" />
+        <xs:element name="instant_queue_enabled" type="xs:string" minOccurs="0" />
+        <xs:element name="showDD" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation.asn" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation.internal_network" type="xs:string" minOccurs="0" />
+        <xs:element name="support_assistive_audio" type="xs:string" minOccurs="0" />
+        <xs:element name="connection_timeout_slow" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation.status" type="xs:string" minOccurs="0" />
+        <xs:element name="prefetch_timeout_in_seconds" type="xs:string" minOccurs="0" />
+        <xs:element name="manifest_expiration_in_seconds" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation.country" type="xs:string" minOccurs="0" />
+        <xs:element name="connection_retries" type="xs:string" minOccurs="0" />
+        <xs:element name="header_downloader_cache_size" type="xs:string" minOccurs="0" />
+        <xs:element name="movie_iframe_bandwidth_multiplier" type="xs:string" minOccurs="0" />
+        <xs:element name="cdn_open_connect_forced" type="xs:string" minOccurs="0" />
+        <xs:element name="initial_bitrate_mask_wifi" type="xs:string" minOccurs="0" />
+        <xs:element name="support_title_audio_selection" type="xs:string" minOccurs="0" />
+        <xs:element name="selected_cdn_bandwidth_multiplier" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation.language" type="xs:string" minOccurs="0" />
+        <xs:element name="dvd_service_allowed" type="xs:string" minOccurs="0" />
+        <xs:element name="dd_5_1_enabled" type="xs:string" minOccurs="0" />
+        <xs:element name="min_cticket_renew_seconds" type="xs:string" minOccurs="0" />
+        <xs:element name="connection_timeout" type="xs:string" minOccurs="0" />
+        <xs:element name="use_dash_profiles" type="xs:string" minOccurs="0" />
+        <xs:element name="generic_feed_url" type="xs:string" minOccurs="0" />
+        <xs:element name="geolocation" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="config" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

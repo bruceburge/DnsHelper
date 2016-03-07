@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnblockUSTest</RootNamespace>
     <AssemblyName>UnblockUSTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +58,21 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NetflixConfig.cs">
+      <DependentUpon>NetflixConfig.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NetflixConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetflixConfig.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NetflixForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NetflixForm.Designer.cs">
+      <DependentUpon>NetflixForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetflixStatusChecker.cs" />
     <Compile Include="NetworkAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -65,8 +82,12 @@
     <Compile Include="NetworkManagement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnblockUsConfig.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NetflixForm.resx">
+      <DependentUpon>NetflixForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,8 +97,20 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
+    <None Include="NetflixConfig.xsc">
+      <DependentUpon>NetflixConfig.xsd</DependentUpon>
+    </None>
+    <None Include="NetflixConfig.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NetflixConfig.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NetflixConfig.xss">
+      <DependentUpon>NetflixConfig.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,7 +125,259 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\refresh-16.png" />
+    <EmbeddedResource Include="img\error-16.png" />
+    <EmbeddedResource Include="img\flags\ad.png" />
+    <EmbeddedResource Include="img\flags\ae.png" />
+    <EmbeddedResource Include="img\flags\af.png" />
+    <EmbeddedResource Include="img\flags\ag.png" />
+    <EmbeddedResource Include="img\flags\ai.png" />
+    <EmbeddedResource Include="img\flags\al.png" />
+    <EmbeddedResource Include="img\flags\am.png" />
+    <EmbeddedResource Include="img\flags\an.png" />
+    <EmbeddedResource Include="img\flags\ao.png" />
+    <EmbeddedResource Include="img\flags\ar.png" />
+    <EmbeddedResource Include="img\flags\as.png" />
+    <EmbeddedResource Include="img\flags\at.png" />
+    <EmbeddedResource Include="img\flags\au.png" />
+    <EmbeddedResource Include="img\flags\aw.png" />
+    <EmbeddedResource Include="img\flags\ax.png" />
+    <EmbeddedResource Include="img\flags\az.png" />
+    <EmbeddedResource Include="img\flags\ba.png" />
+    <EmbeddedResource Include="img\flags\bb.png" />
+    <EmbeddedResource Include="img\flags\bd.png" />
+    <EmbeddedResource Include="img\flags\be.png" />
+    <EmbeddedResource Include="img\flags\bf.png" />
+    <EmbeddedResource Include="img\flags\bg.png" />
+    <EmbeddedResource Include="img\flags\bh.png" />
+    <EmbeddedResource Include="img\flags\bi.png" />
+    <EmbeddedResource Include="img\flags\bj.png" />
+    <EmbeddedResource Include="img\flags\bm.png" />
+    <EmbeddedResource Include="img\flags\bn.png" />
+    <EmbeddedResource Include="img\flags\bo.png" />
+    <EmbeddedResource Include="img\flags\br.png" />
+    <EmbeddedResource Include="img\flags\bs.png" />
+    <EmbeddedResource Include="img\flags\bt.png" />
+    <EmbeddedResource Include="img\flags\bv.png" />
+    <EmbeddedResource Include="img\flags\bw.png" />
+    <EmbeddedResource Include="img\flags\by.png" />
+    <EmbeddedResource Include="img\flags\bz.png" />
+    <EmbeddedResource Include="img\flags\ca.png" />
+    <EmbeddedResource Include="img\flags\catalonia.png" />
+    <EmbeddedResource Include="img\flags\cc.png" />
+    <EmbeddedResource Include="img\flags\cd.png" />
+    <EmbeddedResource Include="img\flags\cf.png" />
+    <EmbeddedResource Include="img\flags\cg.png" />
+    <EmbeddedResource Include="img\flags\ch.png" />
+    <EmbeddedResource Include="img\flags\ci.png" />
+    <EmbeddedResource Include="img\flags\ck.png" />
+    <EmbeddedResource Include="img\flags\cl.png" />
+    <EmbeddedResource Include="img\flags\cm.png" />
+    <EmbeddedResource Include="img\flags\cn.png" />
+    <EmbeddedResource Include="img\flags\co.png" />
+    <EmbeddedResource Include="img\flags\cr.png" />
+    <EmbeddedResource Include="img\flags\cs.png" />
+    <EmbeddedResource Include="img\flags\cu.png" />
+    <EmbeddedResource Include="img\flags\cv.png" />
+    <EmbeddedResource Include="img\flags\cx.png" />
+    <EmbeddedResource Include="img\flags\cy.png" />
+    <EmbeddedResource Include="img\flags\cz.png" />
+    <EmbeddedResource Include="img\flags\de.png" />
+    <EmbeddedResource Include="img\flags\dj.png" />
+    <EmbeddedResource Include="img\flags\dk.png" />
+    <EmbeddedResource Include="img\flags\dm.png" />
+    <EmbeddedResource Include="img\flags\do.png" />
+    <EmbeddedResource Include="img\flags\dz.png" />
+    <EmbeddedResource Include="img\flags\ec.png" />
+    <EmbeddedResource Include="img\flags\ee.png" />
+    <EmbeddedResource Include="img\flags\eg.png" />
+    <EmbeddedResource Include="img\flags\eh.png" />
+    <EmbeddedResource Include="img\flags\en.png" />
+    <EmbeddedResource Include="img\flags\er.png" />
+    <EmbeddedResource Include="img\flags\es.png" />
+    <EmbeddedResource Include="img\flags\et.png" />
+    <EmbeddedResource Include="img\flags\eu.png" />
+    <EmbeddedResource Include="img\flags\fam.png" />
+    <EmbeddedResource Include="img\flags\fi.png" />
+    <EmbeddedResource Include="img\flags\fj.png" />
+    <EmbeddedResource Include="img\flags\fk.png" />
+    <EmbeddedResource Include="img\flags\fm.png" />
+    <EmbeddedResource Include="img\flags\fo.png" />
+    <EmbeddedResource Include="img\flags\fr.png" />
+    <EmbeddedResource Include="img\flags\ga.png" />
+    <EmbeddedResource Include="img\flags\gb.png" />
+    <EmbeddedResource Include="img\flags\gd.png" />
+    <EmbeddedResource Include="img\flags\ge.png" />
+    <EmbeddedResource Include="img\flags\gf.png" />
+    <EmbeddedResource Include="img\flags\gh.png" />
+    <EmbeddedResource Include="img\flags\gi.png" />
+    <EmbeddedResource Include="img\flags\gl.png" />
+    <EmbeddedResource Include="img\flags\gm.png" />
+    <EmbeddedResource Include="img\flags\gn.png" />
+    <EmbeddedResource Include="img\flags\gp.png" />
+    <EmbeddedResource Include="img\flags\gq.png" />
+    <EmbeddedResource Include="img\flags\gr.png" />
+    <EmbeddedResource Include="img\flags\gs.png" />
+    <EmbeddedResource Include="img\flags\gt.png" />
+    <EmbeddedResource Include="img\flags\gu.png" />
+    <EmbeddedResource Include="img\flags\gw.png" />
+    <EmbeddedResource Include="img\flags\gy.png" />
+    <EmbeddedResource Include="img\flags\hk.png" />
+    <EmbeddedResource Include="img\flags\hm.png" />
+    <EmbeddedResource Include="img\flags\hn.png" />
+    <EmbeddedResource Include="img\flags\hr.png" />
+    <EmbeddedResource Include="img\flags\ht.png" />
+    <EmbeddedResource Include="img\flags\hu.png" />
+    <EmbeddedResource Include="img\flags\id.png" />
+    <EmbeddedResource Include="img\flags\ie.png" />
+    <EmbeddedResource Include="img\flags\il.png" />
+    <EmbeddedResource Include="img\flags\in.png" />
+    <EmbeddedResource Include="img\flags\io.png" />
+    <EmbeddedResource Include="img\flags\iq.png" />
+    <EmbeddedResource Include="img\flags\ir.png" />
+    <EmbeddedResource Include="img\flags\is.png" />
+    <EmbeddedResource Include="img\flags\it.png" />
+    <EmbeddedResource Include="img\flags\jm.png" />
+    <EmbeddedResource Include="img\flags\jo.png" />
+    <EmbeddedResource Include="img\flags\jp.png" />
+    <EmbeddedResource Include="img\flags\ke.png" />
+    <EmbeddedResource Include="img\flags\kg.png" />
+    <EmbeddedResource Include="img\flags\kh.png" />
+    <EmbeddedResource Include="img\flags\ki.png" />
+    <EmbeddedResource Include="img\flags\km.png" />
+    <EmbeddedResource Include="img\flags\kn.png" />
+    <EmbeddedResource Include="img\flags\kp.png" />
+    <EmbeddedResource Include="img\flags\kr.png" />
+    <EmbeddedResource Include="img\flags\kw.png" />
+    <EmbeddedResource Include="img\flags\ky.png" />
+    <EmbeddedResource Include="img\flags\kz.png" />
+    <EmbeddedResource Include="img\flags\la.png" />
+    <EmbeddedResource Include="img\flags\lb.png" />
+    <EmbeddedResource Include="img\flags\lc.png" />
+    <EmbeddedResource Include="img\flags\li.png" />
+    <EmbeddedResource Include="img\flags\lk.png" />
+    <EmbeddedResource Include="img\flags\lr.png" />
+    <EmbeddedResource Include="img\flags\ls.png" />
+    <EmbeddedResource Include="img\flags\lt.png" />
+    <EmbeddedResource Include="img\flags\lu.png" />
+    <EmbeddedResource Include="img\flags\lv.png" />
+    <EmbeddedResource Include="img\flags\ly.png" />
+    <EmbeddedResource Include="img\flags\ma.png" />
+    <EmbeddedResource Include="img\flags\mc.png" />
+    <EmbeddedResource Include="img\flags\md.png" />
+    <EmbeddedResource Include="img\flags\me.png" />
+    <EmbeddedResource Include="img\flags\mg.png" />
+    <EmbeddedResource Include="img\flags\mh.png" />
+    <EmbeddedResource Include="img\flags\mk.png" />
+    <EmbeddedResource Include="img\flags\ml.png" />
+    <EmbeddedResource Include="img\flags\mm.png" />
+    <EmbeddedResource Include="img\flags\mn.png" />
+    <EmbeddedResource Include="img\flags\mo.png" />
+    <EmbeddedResource Include="img\flags\mp.png" />
+    <EmbeddedResource Include="img\flags\mq.png" />
+    <EmbeddedResource Include="img\flags\mr.png" />
+    <EmbeddedResource Include="img\flags\ms.png" />
+    <EmbeddedResource Include="img\flags\mt.png" />
+    <EmbeddedResource Include="img\flags\mu.png" />
+    <EmbeddedResource Include="img\flags\mv.png" />
+    <EmbeddedResource Include="img\flags\mw.png" />
+    <EmbeddedResource Include="img\flags\mx.png" />
+    <EmbeddedResource Include="img\flags\my.png" />
+    <EmbeddedResource Include="img\flags\mz.png" />
+    <EmbeddedResource Include="img\flags\na.png" />
+    <EmbeddedResource Include="img\flags\nc.png" />
+    <EmbeddedResource Include="img\flags\ne.png" />
+    <EmbeddedResource Include="img\flags\nf.png" />
+    <EmbeddedResource Include="img\flags\ng.png" />
+    <EmbeddedResource Include="img\flags\ni.png" />
+    <EmbeddedResource Include="img\flags\nl.png" />
+    <EmbeddedResource Include="img\flags\no.png" />
+    <EmbeddedResource Include="img\flags\np.png" />
+    <EmbeddedResource Include="img\flags\nr.png" />
+    <EmbeddedResource Include="img\flags\nu.png" />
+    <EmbeddedResource Include="img\flags\nz.png" />
+    <EmbeddedResource Include="img\flags\om.png" />
+    <EmbeddedResource Include="img\flags\pa.png" />
+    <EmbeddedResource Include="img\flags\pe.png" />
+    <EmbeddedResource Include="img\flags\pf.png" />
+    <EmbeddedResource Include="img\flags\pg.png" />
+    <EmbeddedResource Include="img\flags\ph.png" />
+    <EmbeddedResource Include="img\flags\pk.png" />
+    <EmbeddedResource Include="img\flags\pl.png" />
+    <EmbeddedResource Include="img\flags\pm.png" />
+    <EmbeddedResource Include="img\flags\pn.png" />
+    <EmbeddedResource Include="img\flags\pr.png" />
+    <EmbeddedResource Include="img\flags\ps.png" />
+    <EmbeddedResource Include="img\flags\pt.png" />
+    <EmbeddedResource Include="img\flags\pw.png" />
+    <EmbeddedResource Include="img\flags\py.png" />
+    <EmbeddedResource Include="img\flags\qa.png" />
+    <EmbeddedResource Include="img\flags\re.png" />
+    <EmbeddedResource Include="img\flags\ro.png" />
+    <EmbeddedResource Include="img\flags\rs.png" />
+    <EmbeddedResource Include="img\flags\ru.png" />
+    <EmbeddedResource Include="img\flags\rw.png" />
+    <EmbeddedResource Include="img\flags\sa.png" />
+    <EmbeddedResource Include="img\flags\sb.png" />
+    <EmbeddedResource Include="img\flags\sc.png" />
+    <EmbeddedResource Include="img\flags\scotland.png" />
+    <EmbeddedResource Include="img\flags\sd.png" />
+    <EmbeddedResource Include="img\flags\se.png" />
+    <EmbeddedResource Include="img\flags\sg.png" />
+    <EmbeddedResource Include="img\flags\sh.png" />
+    <EmbeddedResource Include="img\flags\si.png" />
+    <EmbeddedResource Include="img\flags\sj.png" />
+    <EmbeddedResource Include="img\flags\sk.png" />
+    <EmbeddedResource Include="img\flags\sl.png" />
+    <EmbeddedResource Include="img\flags\sm.png" />
+    <EmbeddedResource Include="img\flags\sn.png" />
+    <EmbeddedResource Include="img\flags\so.png" />
+    <EmbeddedResource Include="img\flags\sr.png" />
+    <EmbeddedResource Include="img\flags\st.png" />
+    <EmbeddedResource Include="img\flags\sv.png" />
+    <EmbeddedResource Include="img\flags\sy.png" />
+    <EmbeddedResource Include="img\flags\sz.png" />
+    <EmbeddedResource Include="img\flags\tc.png" />
+    <EmbeddedResource Include="img\flags\td.png" />
+    <EmbeddedResource Include="img\flags\tf.png" />
+    <EmbeddedResource Include="img\flags\tg.png" />
+    <EmbeddedResource Include="img\flags\th.png" />
+    <EmbeddedResource Include="img\flags\tj.png" />
+    <EmbeddedResource Include="img\flags\tk.png" />
+    <EmbeddedResource Include="img\flags\tl.png" />
+    <EmbeddedResource Include="img\flags\tm.png" />
+    <EmbeddedResource Include="img\flags\tn.png" />
+    <EmbeddedResource Include="img\flags\to.png" />
+    <EmbeddedResource Include="img\flags\tr.png" />
+    <EmbeddedResource Include="img\flags\tt.png" />
+    <EmbeddedResource Include="img\flags\tv.png" />
+    <EmbeddedResource Include="img\flags\tw.png" />
+    <EmbeddedResource Include="img\flags\tz.png" />
+    <EmbeddedResource Include="img\flags\ua.png" />
+    <EmbeddedResource Include="img\flags\ug.png" />
+    <EmbeddedResource Include="img\flags\um.png" />
+    <EmbeddedResource Include="img\flags\us.png" />
+    <EmbeddedResource Include="img\flags\uy.png" />
+    <EmbeddedResource Include="img\flags\uz.png" />
+    <EmbeddedResource Include="img\flags\va.png" />
+    <EmbeddedResource Include="img\flags\vc.png" />
+    <EmbeddedResource Include="img\flags\ve.png" />
+    <EmbeddedResource Include="img\flags\vg.png" />
+    <EmbeddedResource Include="img\flags\vi.png" />
+    <EmbeddedResource Include="img\flags\vn.png" />
+    <EmbeddedResource Include="img\flags\vu.png" />
+    <EmbeddedResource Include="img\flags\wales.png" />
+    <EmbeddedResource Include="img\flags\wf.png" />
+    <EmbeddedResource Include="img\flags\ws.png" />
+    <EmbeddedResource Include="img\flags\ye.png" />
+    <EmbeddedResource Include="img\flags\yt.png" />
+    <EmbeddedResource Include="img\flags\za.png" />
+    <EmbeddedResource Include="img\flags\zm.png" />
+    <EmbeddedResource Include="img\flags\zw.png" />
+    <EmbeddedResource Include="img\link-16.png" />
+    <EmbeddedResource Include="img\nf-favicon-hires.ico" />
+    <EmbeddedResource Include="img\ok-16.png" />
+    <EmbeddedResource Include="img\refresh-16.png" />
+    <EmbeddedResource Include="img\unknown-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

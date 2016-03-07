@@ -47,6 +47,7 @@
             this.lblSelectedNic = new System.Windows.Forms.Label();
             this.btnGoToWebsite = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnNetflixSettings = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -211,6 +212,19 @@
             this.btnGoToWebsite.UseVisualStyleBackColor = true;
             this.btnGoToWebsite.Click += new System.EventHandler(this.btnGoToWebsite_Click);
             // 
+            // btnNetflixSettings
+            // 
+            this.btnNetflixSettings.FlatAppearance.BorderSize = 0;
+            this.btnNetflixSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNetflixSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnNetflixSettings.Image")));
+            this.btnNetflixSettings.Location = new System.Drawing.Point(50, 147);
+            this.btnNetflixSettings.Name = "btnNetflixSettings";
+            this.btnNetflixSettings.Size = new System.Drawing.Size(27, 23);
+            this.btnNetflixSettings.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.btnNetflixSettings, "Open Netflix Settings");
+            this.btnNetflixSettings.UseVisualStyleBackColor = true;
+            this.btnNetflixSettings.Click += new System.EventHandler(this.btnNetflixSettings_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +234,7 @@
             this.Controls.Add(this.lblDns02Current);
             this.Controls.Add(this.lblDns01Current);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnNetflixSettings);
             this.Controls.Add(this.btnGoToWebsite);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClearDns);
@@ -230,6 +245,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Unblock-Us DNS Helper";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -256,6 +273,7 @@
         private System.Windows.Forms.Label lblSelectedNic;
         private System.Windows.Forms.Button btnGoToWebsite;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnNetflixSettings;
     }
 }
 

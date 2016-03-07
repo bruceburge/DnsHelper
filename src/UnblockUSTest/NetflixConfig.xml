@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?>
+<config>
+  <device_supported>true</device_supported>
+  <country>FR</country>
+  <enable_content_header_cache>true</enable_content_header_cache>
+  <ncts>CLOUD</ncts>
+  <stall_notification_intrplay>true</stall_notification_intrplay>
+  <geolocation.locale>fr-FR</geolocation.locale>
+  <movie_norminal_to_peak_bandwidth_multiplier>1.5</movie_norminal_to_peak_bandwidth_multiplier>
+  <movie_peakbandwidth_multiplier>1.0</movie_peakbandwidth_multiplier>
+  <instant_queue_enabled>false</instant_queue_enabled>
+  <showDD>true</showDD>
+  <geolocation.asn>3215</geolocation.asn>
+  <geolocation.internal_network>false</geolocation.internal_network>
+  <support_assistive_audio>true</support_assistive_audio>
+  <connection_timeout_slow>16000</connection_timeout_slow>
+  <geolocation.status>ALLOW</geolocation.status>
+  <prefetch_timeout_in_seconds>60</prefetch_timeout_in_seconds>
+  <manifest_expiration_in_seconds>7200</manifest_expiration_in_seconds>
+  <geolocation.country>FR</geolocation.country>
+  <connection_retries>3</connection_retries>
+  <header_downloader_cache_size>5</header_downloader_cache_size>
+  <movie_iframe_bandwidth_multiplier>0.3</movie_iframe_bandwidth_multiplier>
+  <cdn_open_connect_forced>4,6</cdn_open_connect_forced>
+  <initial_bitrate_mask_wifi>1750</initial_bitrate_mask_wifi>
+  <support_title_audio_selection>true</support_title_audio_selection>
+  <selected_cdn_bandwidth_multiplier>1.0</selected_cdn_bandwidth_multiplier>
+  <geolocation.language>fr</geolocation.language>
+  <dvd_service_allowed>false</dvd_service_allowed>
+  <dd_5_1_enabled>true</dd_5_1_enabled>
+  <min_cticket_renew_seconds>0</min_cticket_renew_seconds>
+  <connection_timeout>6000</connection_timeout>
+  <use_dash_profiles>true</use_dash_profiles>
+  <generic_feed_url>http://api.netflix.com/catalog/titles/populars?v=2.0&amp;output=plist&amp;filters=http://api.netflix.com/categories/title_formats/instant</generic_feed_url>
+  <geolocation>FR</geolocation>
+</config>
