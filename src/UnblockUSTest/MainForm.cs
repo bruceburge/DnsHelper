@@ -21,7 +21,7 @@ namespace UnblockUSTest
         /// <summary>
         /// The currently selected Network interface card
         /// </summary>
-        public string CurrentNic { get { return lblSelectedNic.Text; } set { lblSelectedNic.Text = value; } }
+        public string CurrentNic { get { return btnSelectedNic.Text; } set { btnSelectedNic.Text = value; } }
 
         public MainForm()
         {
@@ -130,6 +130,12 @@ namespace UnblockUSTest
                 this._netflixForm.Show(this);
 
             this._netflixForm.BringToFront();
+        }
+
+        private void btnSelectedNic_Click(object sender, EventArgs e)
+        {
+            // Open the network connections window
+            Process.Start("ncpa.cpl");
         }
     }
 }

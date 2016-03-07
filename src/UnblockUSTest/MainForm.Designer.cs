@@ -44,10 +44,10 @@
             this.lblDns01Current = new System.Windows.Forms.Label();
             this.lblDns02Current = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.lblSelectedNic = new System.Windows.Forms.Label();
             this.btnGoToWebsite = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnNetflixSettings = new System.Windows.Forms.Button();
+            this.btnSelectedNic = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,25 +179,13 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
-            this.btnRefresh.Location = new System.Drawing.Point(343, 40);
+            this.btnRefresh.Location = new System.Drawing.Point(354, 46);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(27, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(16, 16);
             this.btnRefresh.TabIndex = 3;
             this.toolTip1.SetToolTip(this.btnRefresh, "Refresh currently set DNS values");
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // lblSelectedNic
-            // 
-            this.lblSelectedNic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSelectedNic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedNic.Location = new System.Drawing.Point(13, 9);
-            this.lblSelectedNic.Name = "lblSelectedNic";
-            this.lblSelectedNic.Size = new System.Drawing.Size(361, 23);
-            this.lblSelectedNic.TabIndex = 6;
-            this.lblSelectedNic.Text = "label7";
-            this.toolTip1.SetToolTip(this.lblSelectedNic, "The selected NIC that is being modified");
             // 
             // btnGoToWebsite
             // 
@@ -225,12 +213,26 @@
             this.btnNetflixSettings.UseVisualStyleBackColor = true;
             this.btnNetflixSettings.Click += new System.EventHandler(this.btnNetflixSettings_Click);
             // 
+            // btnSelectedNic
+            // 
+            this.btnSelectedNic.FlatAppearance.BorderSize = 0;
+            this.btnSelectedNic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectedNic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectedNic.Location = new System.Drawing.Point(12, 8);
+            this.btnSelectedNic.Name = "btnSelectedNic";
+            this.btnSelectedNic.Size = new System.Drawing.Size(358, 33);
+            this.btnSelectedNic.TabIndex = 7;
+            this.btnSelectedNic.Text = "... nic ...";
+            this.btnSelectedNic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectedNic.UseVisualStyleBackColor = true;
+            this.btnSelectedNic.Click += new System.EventHandler(this.btnSelectedNic_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 188);
-            this.Controls.Add(this.lblSelectedNic);
+            this.Controls.Add(this.btnSelectedNic);
             this.Controls.Add(this.lblDns02Current);
             this.Controls.Add(this.lblDns01Current);
             this.Controls.Add(this.label4);
@@ -270,10 +272,10 @@
         private System.Windows.Forms.Label lblDns01Current;
         private System.Windows.Forms.Label lblDns02Current;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Label lblSelectedNic;
         private System.Windows.Forms.Button btnGoToWebsite;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnNetflixSettings;
+        private System.Windows.Forms.Button btnSelectedNic;
     }
 }
 
