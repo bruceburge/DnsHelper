@@ -33,8 +33,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.unblockUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.primarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.secondarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.unblockusWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unlocatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unlocatorPrimarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unlocatorSecondarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.unlocatorWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbDns01 = new System.Windows.Forms.TextBox();
             this.tbDns02 = new System.Windows.Forms.TextBox();
             this.btnApplyDns = new System.Windows.Forms.Button();
@@ -44,10 +52,9 @@
             this.lblDns01Current = new System.Windows.Forms.Label();
             this.lblDns02Current = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnGoToWebsite = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnNetflixSettings = new System.Windows.Forms.Button();
             this.btnSelectedNic = new System.Windows.Forms.Button();
+            this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,10 +79,21 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.primarySetupToolStripMenuItem,
-            this.secondarySetupToolStripMenuItem});
+            this.unblockUsToolStripMenuItem,
+            this.unlocatorToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
+            // 
+            // unblockUsToolStripMenuItem
+            // 
+            this.unblockUsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.primarySetupToolStripMenuItem,
+            this.secondarySetupToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.unblockusWebsiteToolStripMenuItem});
+            this.unblockUsToolStripMenuItem.Name = "unblockUsToolStripMenuItem";
+            this.unblockUsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.unblockUsToolStripMenuItem.Text = "Unblock-Us";
             // 
             // primarySetupToolStripMenuItem
             // 
@@ -90,6 +108,55 @@
             this.secondarySetupToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.secondarySetupToolStripMenuItem.Text = "Secondary Setup";
             this.secondarySetupToolStripMenuItem.Click += new System.EventHandler(this.secondarySetupToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
+            // 
+            // unblockusWebsiteToolStripMenuItem
+            // 
+            this.unblockusWebsiteToolStripMenuItem.Name = "unblockusWebsiteToolStripMenuItem";
+            this.unblockusWebsiteToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.unblockusWebsiteToolStripMenuItem.Text = "Website...";
+            this.unblockusWebsiteToolStripMenuItem.Click += new System.EventHandler(this.unblockusWebsiteToolStripMenuItem_Click);
+            // 
+            // unlocatorToolStripMenuItem
+            // 
+            this.unlocatorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unlocatorPrimarySetupToolStripMenuItem,
+            this.unlocatorSecondarySetupToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.unlocatorWebsiteToolStripMenuItem});
+            this.unlocatorToolStripMenuItem.Name = "unlocatorToolStripMenuItem";
+            this.unlocatorToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.unlocatorToolStripMenuItem.Text = "Unlocator";
+            // 
+            // unlocatorPrimarySetupToolStripMenuItem
+            // 
+            this.unlocatorPrimarySetupToolStripMenuItem.Name = "unlocatorPrimarySetupToolStripMenuItem";
+            this.unlocatorPrimarySetupToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.unlocatorPrimarySetupToolStripMenuItem.Text = "Primary DNS";
+            this.unlocatorPrimarySetupToolStripMenuItem.Click += new System.EventHandler(this.unlocatorPrimarySetupToolStripMenuItem_Click);
+            // 
+            // unlocatorSecondarySetupToolStripMenuItem
+            // 
+            this.unlocatorSecondarySetupToolStripMenuItem.Name = "unlocatorSecondarySetupToolStripMenuItem";
+            this.unlocatorSecondarySetupToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.unlocatorSecondarySetupToolStripMenuItem.Text = "Beta DNS";
+            this.unlocatorSecondarySetupToolStripMenuItem.Click += new System.EventHandler(this.unlocatorSecondarySetupToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(138, 6);
+            // 
+            // unlocatorWebsiteToolStripMenuItem
+            // 
+            this.unlocatorWebsiteToolStripMenuItem.Name = "unlocatorWebsiteToolStripMenuItem";
+            this.unlocatorWebsiteToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.unlocatorWebsiteToolStripMenuItem.Text = "Website...";
+            this.unlocatorWebsiteToolStripMenuItem.Click += new System.EventHandler(this.unlocatorWebsiteToolStripMenuItem_Click);
             // 
             // tbDns01
             // 
@@ -187,32 +254,6 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // btnGoToWebsite
-            // 
-            this.btnGoToWebsite.FlatAppearance.BorderSize = 0;
-            this.btnGoToWebsite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGoToWebsite.Image = ((System.Drawing.Image)(resources.GetObject("btnGoToWebsite.Image")));
-            this.btnGoToWebsite.Location = new System.Drawing.Point(17, 147);
-            this.btnGoToWebsite.Name = "btnGoToWebsite";
-            this.btnGoToWebsite.Size = new System.Drawing.Size(27, 23);
-            this.btnGoToWebsite.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.btnGoToWebsite, "Click to open the Unblock-US website");
-            this.btnGoToWebsite.UseVisualStyleBackColor = true;
-            this.btnGoToWebsite.Click += new System.EventHandler(this.btnGoToWebsite_Click);
-            // 
-            // btnNetflixSettings
-            // 
-            this.btnNetflixSettings.FlatAppearance.BorderSize = 0;
-            this.btnNetflixSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNetflixSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnNetflixSettings.Image")));
-            this.btnNetflixSettings.Location = new System.Drawing.Point(50, 147);
-            this.btnNetflixSettings.Name = "btnNetflixSettings";
-            this.btnNetflixSettings.Size = new System.Drawing.Size(27, 23);
-            this.btnNetflixSettings.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.btnNetflixSettings, "Open Netflix Settings");
-            this.btnNetflixSettings.UseVisualStyleBackColor = true;
-            this.btnNetflixSettings.Click += new System.EventHandler(this.btnNetflixSettings_Click);
-            // 
             // btnSelectedNic
             // 
             this.btnSelectedNic.FlatAppearance.BorderSize = 0;
@@ -227,6 +268,12 @@
             this.btnSelectedNic.UseVisualStyleBackColor = true;
             this.btnSelectedNic.Click += new System.EventHandler(this.btnSelectedNic_Click);
             // 
+            // dToolStripMenuItem
+            // 
+            this.dToolStripMenuItem.Name = "dToolStripMenuItem";
+            this.dToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dToolStripMenuItem.Text = "d";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,8 +283,6 @@
             this.Controls.Add(this.lblDns02Current);
             this.Controls.Add(this.lblDns01Current);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnNetflixSettings);
-            this.Controls.Add(this.btnGoToWebsite);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClearDns);
             this.Controls.Add(this.btnApplyDns);
@@ -250,7 +295,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Unblock-Us DNS Helper";
+            this.Text = "Quick DNS Helper";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -272,10 +317,17 @@
         private System.Windows.Forms.Label lblDns01Current;
         private System.Windows.Forms.Label lblDns02Current;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button btnGoToWebsite;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button btnNetflixSettings;
         private System.Windows.Forms.Button btnSelectedNic;
+        private System.Windows.Forms.ToolStripMenuItem unblockUsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unlocatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unlocatorPrimarySetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unlocatorSecondarySetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem unblockusWebsiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem unlocatorWebsiteToolStripMenuItem;
     }
 }
 

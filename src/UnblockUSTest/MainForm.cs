@@ -44,16 +44,6 @@ namespace UnblockUSTest
             return dnsServers;
         }
 
-        private void primarySetupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetDnsTextBoxValues("208.122.23.23", "208.122.23.22");
-        }
-
-        private void secondarySetupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetDnsTextBoxValues("64.145.73.5", "209.107.219.5");
-        }
-
         private void SetDnsTextBoxValues(string dns01, string dns02)
         {
             tbDns01.Text = dns01;
@@ -136,6 +126,36 @@ namespace UnblockUSTest
         {
             // Open the network connections window
             Process.Start("ncpa.cpl");
+        }
+
+        private void primarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDnsTextBoxValues("208.122.23.23", "208.122.23.22");
+        }
+
+        private void secondarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDnsTextBoxValues("64.145.73.5", "209.107.219.5");
+        }
+
+        private void unlocatorPrimarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDnsTextBoxValues("185.37.37.37", "185.37.39.39");
+        }
+
+        private void unlocatorSecondarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDnsTextBoxValues("209.177.145.30", "209.177.145.30");
+        }
+
+        private void unblockusWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.unblock-us.com/");
+        }
+
+        private void unlocatorWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://unlocator.com");
         }
     }
 }

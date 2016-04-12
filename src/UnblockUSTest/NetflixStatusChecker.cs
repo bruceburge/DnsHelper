@@ -32,6 +32,7 @@ namespace UnblockUSTest
         private static string UrlUnblockStatus = "http://check.unblock-us.com/get-status.js?callback=callback&rnd=%RAND%";
         private static string UrlUnblockSetCountry = "http://check.unblock-us.com/set-country.js?callback=callback&code={0}&rnd=%RAND%";
         private static string UrlNetflixConfig = "http://api-global.netflix.com/apps/applefuji/config";
+        private static string UrlUnblockActivateIP = "https://check.unblock-us.com/get-status.js?callback=callback&reactivate=1"; // Get a status back
 
         public event EventHandler<UnblockUsEventArgs> UnblockUsStatus;
         protected virtual void OnUnblockUsStatus(UnblockUsEventArgs e)
@@ -75,9 +76,13 @@ namespace UnblockUSTest
             ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockStatus), "Status");
         }
 
+        public void ActivateNewUnblockUsIp()
+        {
+            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockActivateIP), "Activate IP");
+        }
+
         public void GetNetflixStatus()
         {
-            //ParseNetflixStatus(GetData(UrlNetflixConfig, ref _netflixCookieJar), "Status");
             ParseNetflixStatus(GetDataUsingSocket(UrlNetflixConfig), "Status");
         }
 
