@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsHelperUI", "UnblockUSTest\DnsHelperUI.csproj", "{1B235BCA-A72A-4AEC-8E39-2804B9F9131F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsHelperUI", "DnsHelperUI\DnsHelperUI.csproj", "{1B235BCA-A72A-4AEC-8E39-2804B9F9131F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
