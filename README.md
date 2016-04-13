@@ -1,7 +1,7 @@
-# Unblock-Us
-Utility application to quickly swap between DNS servers for [www.unblock-us.com](www.unblock-us.com).
+# DnsHelper
+Utility application to quickly swap between DNS servers for services such as [www.unblock-us.com](www.unblock-us.com) and [www.unlocator.com](www.unlocator.com).
 
-This utility is in no way affiliated with the Unblock-Us service. It is a custom tool made by a happy customer. I simply wanted a little more functionality than their current tray tool offers.
+This utility is in no way affiliated with any of the companies providing the DNS services. It is a custom tool I made as I wanted a simple way to switch between different DNS values quickly.
 
 ![Demo](http://i.imgur.com/tDRqKYJ.gif "Animated demonstration of the tool")
 
