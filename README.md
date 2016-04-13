@@ -1,5 +1,5 @@
 # DnsHelper
-Utility application to quickly swap between DNS servers for services such as [www.unblock-us.com](www.unblock-us.com) and [www.unlocator.com](www.unlocator.com).
+Utility application to quickly swap between DNS servers for services such as [http://www.unblock-us.com](http://www.unblock-us.com) and [https://unlocator.com/](https://unlocator.com/).
 
 This utility is in no way affiliated with any of the companies providing the DNS services. It is a custom tool I made as I wanted a simple way to switch between different DNS values quickly.
 
