@@ -60,30 +60,30 @@ namespace UnblockUSTest
                 return;
 
             // Login and get status
-            InitializeCookies(string.Format(UrlUnblockLogin, _userName));
+            TryInitializeCookies(string.Format(UrlUnblockLogin, _userName), ref _unblockCookieJar);
             GetUnblockUsStatus();
             GetNetflixStatus();
         }
 
         public void SetUnblockUsRegion(string countryCode)
         {
-            GetDataUsingSocket(string.Format(UrlUnblockSetCountry, countryCode));
-            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockStatus), $"Set Region '{countryCode}'");
+            GetDataUsingSocket(string.Format(UrlUnblockSetCountry, countryCode), _unblockCookieJar);
+            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockStatus, _unblockCookieJar), $"Set Region '{countryCode}'");
         }
 
         public void GetUnblockUsStatus()
         {
-            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockStatus), "Status");
+            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockStatus, _unblockCookieJar), "Status");
         }
 
         public void ActivateNewUnblockUsIp()
         {
-            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockActivateIP), "Activate IP");
+            ParseUnblockUsStatus(GetDataUsingSocket(UrlUnblockActivateIP, _unblockCookieJar), "Activate IP");
         }
 
         public void GetNetflixStatus()
         {
-            ParseNetflixStatus(GetDataUsingSocket(UrlNetflixConfig), "Status");
+            ParseNetflixStatus(GetDataUsingSocket(UrlNetflixConfig, _unblockCookieJar), "Status");
         }
 
         private void ParseUnblockUsStatus(string statusMessage, string action)
@@ -143,30 +143,21 @@ namespace UnblockUSTest
             OnNetflixStatus(e);
         }
 
-        private string GetDataUsingSocket(string url)
+        private Socket ConnectSocket(Uri uri)
         {
-            // Add a random element to the url, this is a shit hack but the only thing that will work!
-            url = url.Replace("%RAND%", DateTime.Now.Ticks.ToString());
-
-            // Structured uri to be able to extract components
-            var uri = new Uri(url);
-
-            // Detect the correct port
-            int port = url.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ? 443 : 80;
-
+            // Detect the correct port based on the protocol scheme
+            int port = uri.Scheme.StartsWith("https", StringComparison.OrdinalIgnoreCase) ? 443 : 80;
 
             IPHostEntry hostEntry;
             Socket clientSocket = null;
-            
+
             // Resolve the server name
             try
             {
-                Debug.Print("Resolving the server name '"+ uri.Host + "'...");
                 hostEntry = Dns.GetHostEntry(uri.Host);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.Print(ex.ToString());
                 return null;
             }
 
@@ -176,75 +167,85 @@ namespace UnblockUSTest
                 try
                 {
                     clientSocket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                    Debug.Print("TCP Socket("+ address.AddressFamily+ ") is OK...");
                     var remoteEndPoint = new IPEndPoint(address, port);
                     clientSocket.Connect(remoteEndPoint);
-                    Debug.Print("Connect() is OK, address: " + address + ", port: " + port);
                     break;
                 }
                 catch (SocketException ex)
                 {
-                    Debug.Print(ex.ToString());
+                    return null;
                 }
             }
 
+            return clientSocket;
+        }
+
+        private StringBuilder PerformGet(Uri uri, Socket clientSocket, CookieContainer cookieContainer)
+        {
+            // Create the cookie string if there is one
+            string cookies = "";
+            if (cookieContainer != null && cookieContainer.Count > 0)
+            {
+                cookies = "\r\nCookie: ";
+                foreach (Cookie cookie in GetAllCookies(cookieContainer))
+                {
+                    cookies += cookie.Name + "=" + cookie.Value + "; ";
+                }
+            }
+
+            // Format the HTTP GET request string
+            string getRequest = "GET " + uri.PathAndQuery + " HTTP/1.1\r\nHost: " + uri.Host + "\r\nConnection: Close" + cookies + "\r\n\r\n";
+            var getBuffer = Encoding.ASCII.GetBytes(getRequest);
+
+            // Send the GET request to the connected server
+            clientSocket.Send(getBuffer);
+            
+            // Create a buffer that is used to read the response
+            byte[] responseData = new byte[1024];
+
+            // Read the response and save the ASCII data in a string
+            int bytesRead = clientSocket.Receive(responseData);
+
+            var responseString = new StringBuilder();
+            while (bytesRead != 0)
+            {
+                responseString.Append(Encoding.ASCII.GetChars(responseData), 0, bytesRead);
+                bytesRead = clientSocket.Receive(responseData);
+            }
+
+            return responseString;
+        }
+        
+        private string GetDataUsingSocket(string url, CookieContainer cookieContainer = null )
+        {
+            // Add a random element to the url, this is a shit hack but the only thing that will work!
+            url = url.Replace("%RAND%", DateTime.Now.Ticks.ToString());
+
+            // Structured uri to be able to extract components
+            var uri = new Uri(url);
+
+            // Create the socket and connect it
+            var clientSocket = ConnectSocket(uri);
             if (clientSocket == null || !clientSocket.Connected)
                 return null;
 
             try
             {
-                // Create the cookie string if there is one
-                string cookies = "";
-                if (_unblockCookieJar != null && _unblockCookieJar.Count > 0)
-                {
-                    cookies = "\r\nCookie: ";
-                    foreach (Cookie cookie in GetAllCookies(_unblockCookieJar))
-                    {
-                        cookies += cookie.Name + "=" + cookie.Value + "; ";
-                    }
-                }
-
-                // Format the HTTP GET request string
-                string getRequest = "GET " + uri.PathAndQuery + " HTTP/1.1\r\nHost: " + uri.Host + "\r\nConnection: Close"+ cookies + "\r\n\r\n";
-                var getBuffer = Encoding.ASCII.GetBytes(getRequest);
-
-                // Send the GET request to the connected server
-                clientSocket.Send(getBuffer);
-                Debug.Print("Send() is OK...");
-
-                // Create a buffer that is used to read the response
-                byte[] responseData = new byte[1024];
-
-                // Read the response and save the ASCII data in a string
-                int bytesRead = clientSocket.Receive(responseData);
-
-                Debug.Print("Receive() is OK...");
-                StringBuilder responseString = new StringBuilder();
-                while (bytesRead != 0)
-                {
-                    responseString.Append(Encoding.ASCII.GetChars(responseData), 0, bytesRead);
-                    bytesRead = clientSocket.Receive(responseData);
-                }
-
-                var result = responseString.ToString();
-                Debug.Print(result);
-                return result;
+                return PerformGet(uri, clientSocket, cookieContainer)?.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.Print(ex.ToString());
                 return null;
             }
             finally
             {
                 clientSocket.Close();
                 clientSocket.Dispose();
-                clientSocket = null;
             }
         }
 
 
-        private bool InitializeCookies(string url)
+        private bool TryInitializeCookies(string url, ref CookieContainer cookieContainer)
         {
             // Add a random element to the url, this is a shit hack but the only thing that will work!
             url = url.Replace("%RAND%", DateTime.Now.Ticks.ToString());
@@ -255,64 +256,53 @@ namespace UnblockUSTest
             // If the cookie jar is empty then do a fake call to get a session cookie
             try
             {
-                if (_unblockCookieJar == null)
+                if (cookieContainer == null)
                 {
-                    _unblockCookieJar = new CookieContainer();
+                    cookieContainer = new CookieContainer();
                     var request = (HttpWebRequest)WebRequest.Create(url);
 
                     request.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
-                    request.CookieContainer = _unblockCookieJar;
+                    request.CookieContainer = cookieContainer;
 
                     using (var response = (HttpWebResponse)request.GetResponse())
                     {
-                        int cookieCount = _unblockCookieJar.Count;
+                        int cookieCount = cookieContainer.Count;
                         if (cookieCount <= 0)
                             throw new InvalidOperationException("Did not receive any valid session cookies form url '" + url + "'");
                     }
                 }
 
-                return true;
+                return true; // Success
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.Print(ex.ToString());
                 return false;
             }
         }
 
-        private static CookieCollection GetAllCookies(CookieContainer cookieJar)
+        private static CookieCollection GetAllCookies(CookieContainer cookieJar, string scheme = "https")
         {
-            CookieCollection cookieCollection = new CookieCollection();
+            var cookieCollection = new CookieCollection();
 
             Hashtable table = (Hashtable)cookieJar.GetType().InvokeMember("m_domainTable",
-                                                                            BindingFlags.NonPublic |
-                                                                            BindingFlags.GetField |
-                                                                            BindingFlags.Instance,
-                                                                            null,
-                                                                            cookieJar,
-                                                                            new object[] { });
-
-            foreach (var tableKey in table.Keys)
+                                                                          BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance,
+                                                                          null, cookieJar, new object[] { });
+            foreach (string rawKey in table.Keys)
             {
-                String str_tableKey = (string)tableKey;
+                // Skip dots in the beginning, the key value is the domain name for the cookies
+                var key = rawKey.TrimStart( '.' );
 
-                if (str_tableKey[0] == '.')
-                {
-                    str_tableKey = str_tableKey.Substring(1);
-                }
-
-                SortedList list = (SortedList)table[tableKey].GetType().InvokeMember("m_list",
-                                                                            BindingFlags.NonPublic |
-                                                                            BindingFlags.GetField |
-                                                                            BindingFlags.Instance,
+                // Invoke the private function to get the list of cookies
+                var list = (SortedList)table[rawKey].GetType().InvokeMember("m_list",
+                                                                            BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance,
                                                                             null,
-                                                                            table[tableKey],
+                                                                            table[key],
                                                                             new object[] { });
 
-                foreach (var listKey in list.Keys)
+                foreach (var uri in list.Keys.Cast<string>()
+                                             .Select( listkey => new Uri(scheme + "://" + key + listkey)))
                 {
-                    String url = "https://" + str_tableKey + (string)listKey;
-                    cookieCollection.Add(cookieJar.GetCookies(new Uri(url)));
+                    cookieCollection.Add(cookieJar.GetCookies(uri));
                 }
             }
 
