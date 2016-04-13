@@ -1,0 +1,34 @@
+﻿[
+    {
+        "title": "Unblock-Us",
+        "url": "https://www.unblock-us.com/",
+        "servers": [
+            {
+                "title": "Primary",
+                "dns1": "208.122.23.23",
+                "dns2": "208.122.23.22"
+            },
+            {
+                "title": "Secondary",
+                "dns1": "64.145.73.5",
+                "dns2": "209.107.219.5"
+            }
+        ]
+    },
+    {
+        "title": "Unlocator",
+        "url": "https://unlocator.com",
+        "servers": [
+            {
+                "title": "Primary",
+                "dns1": "185.37.37.37",
+                "dns2": "185.37.39.39"
+            },
+            {
+                "title": "Beta",
+                "dns1": "209.177.145.30",
+                "dns2": "209.177.145.30"
+            }
+        ]
+    }
+]
