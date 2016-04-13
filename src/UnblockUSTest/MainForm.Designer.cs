@@ -1,6 +1,8 @@
-﻿namespace UnblockUSTest
+﻿using System.Windows.Forms;
+
+namespace DnsHelperUI
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -32,17 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.unblockUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.primarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secondarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.unblockusWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unlocatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unlocatorPrimarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unlocatorSecondarySetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.unlocatorWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxMenuChooseDns = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tbDns01 = new System.Windows.Forms.TextBox();
             this.tbDns02 = new System.Windows.Forms.TextBox();
             this.btnApplyDns = new System.Windows.Forms.Button();
@@ -55,7 +47,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSelectedNic = new System.Windows.Forms.Button();
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
+            this.btnChooseDns = new System.Windows.Forms.Button();
+            this.ctxMenuItemSeparatorForReload = new System.Windows.Forms.ToolStripSeparator();
+            this.ctxMenuItemReloadJSON = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxMenuChooseDns.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -76,91 +71,17 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "DNS 2";
             // 
-            // contextMenuStrip1
+            // ctxMenuChooseDns
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unblockUsToolStripMenuItem,
-            this.unlocatorToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
-            // 
-            // unblockUsToolStripMenuItem
-            // 
-            this.unblockUsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.primarySetupToolStripMenuItem,
-            this.secondarySetupToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.unblockusWebsiteToolStripMenuItem});
-            this.unblockUsToolStripMenuItem.Name = "unblockUsToolStripMenuItem";
-            this.unblockUsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.unblockUsToolStripMenuItem.Text = "Unblock-Us";
-            // 
-            // primarySetupToolStripMenuItem
-            // 
-            this.primarySetupToolStripMenuItem.Name = "primarySetupToolStripMenuItem";
-            this.primarySetupToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.primarySetupToolStripMenuItem.Text = "Primary Setup";
-            this.primarySetupToolStripMenuItem.Click += new System.EventHandler(this.primarySetupToolStripMenuItem_Click);
-            // 
-            // secondarySetupToolStripMenuItem
-            // 
-            this.secondarySetupToolStripMenuItem.Name = "secondarySetupToolStripMenuItem";
-            this.secondarySetupToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.secondarySetupToolStripMenuItem.Text = "Secondary Setup";
-            this.secondarySetupToolStripMenuItem.Click += new System.EventHandler(this.secondarySetupToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
-            // 
-            // unblockusWebsiteToolStripMenuItem
-            // 
-            this.unblockusWebsiteToolStripMenuItem.Name = "unblockusWebsiteToolStripMenuItem";
-            this.unblockusWebsiteToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.unblockusWebsiteToolStripMenuItem.Text = "Website...";
-            this.unblockusWebsiteToolStripMenuItem.Click += new System.EventHandler(this.unblockusWebsiteToolStripMenuItem_Click);
-            // 
-            // unlocatorToolStripMenuItem
-            // 
-            this.unlocatorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unlocatorPrimarySetupToolStripMenuItem,
-            this.unlocatorSecondarySetupToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.unlocatorWebsiteToolStripMenuItem});
-            this.unlocatorToolStripMenuItem.Name = "unlocatorToolStripMenuItem";
-            this.unlocatorToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.unlocatorToolStripMenuItem.Text = "Unlocator";
-            // 
-            // unlocatorPrimarySetupToolStripMenuItem
-            // 
-            this.unlocatorPrimarySetupToolStripMenuItem.Name = "unlocatorPrimarySetupToolStripMenuItem";
-            this.unlocatorPrimarySetupToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.unlocatorPrimarySetupToolStripMenuItem.Text = "Primary DNS";
-            this.unlocatorPrimarySetupToolStripMenuItem.Click += new System.EventHandler(this.unlocatorPrimarySetupToolStripMenuItem_Click);
-            // 
-            // unlocatorSecondarySetupToolStripMenuItem
-            // 
-            this.unlocatorSecondarySetupToolStripMenuItem.Name = "unlocatorSecondarySetupToolStripMenuItem";
-            this.unlocatorSecondarySetupToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.unlocatorSecondarySetupToolStripMenuItem.Text = "Beta DNS";
-            this.unlocatorSecondarySetupToolStripMenuItem.Click += new System.EventHandler(this.unlocatorSecondarySetupToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(138, 6);
-            // 
-            // unlocatorWebsiteToolStripMenuItem
-            // 
-            this.unlocatorWebsiteToolStripMenuItem.Name = "unlocatorWebsiteToolStripMenuItem";
-            this.unlocatorWebsiteToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.unlocatorWebsiteToolStripMenuItem.Text = "Website...";
-            this.unlocatorWebsiteToolStripMenuItem.Click += new System.EventHandler(this.unlocatorWebsiteToolStripMenuItem_Click);
+            this.ctxMenuChooseDns.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxMenuItemSeparatorForReload,
+            this.ctxMenuItemReloadJSON});
+            this.ctxMenuChooseDns.Name = "contextMenuStrip1";
+            this.ctxMenuChooseDns.Size = new System.Drawing.Size(153, 54);
             // 
             // tbDns01
             // 
-            this.tbDns01.ContextMenuStrip = this.contextMenuStrip1;
+            this.tbDns01.ContextMenuStrip = this.ctxMenuChooseDns;
             this.tbDns01.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDns01.Location = new System.Drawing.Point(15, 65);
             this.tbDns01.Name = "tbDns01";
@@ -171,7 +92,7 @@
             // 
             // tbDns02
             // 
-            this.tbDns02.ContextMenuStrip = this.contextMenuStrip1;
+            this.tbDns02.ContextMenuStrip = this.ctxMenuChooseDns;
             this.tbDns02.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDns02.Location = new System.Drawing.Point(15, 115);
             this.tbDns02.Name = "tbDns02";
@@ -274,11 +195,35 @@
             this.dToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dToolStripMenuItem.Text = "d";
             // 
+            // btnChooseDns
+            // 
+            this.btnChooseDns.ContextMenuStrip = this.ctxMenuChooseDns;
+            this.btnChooseDns.Location = new System.Drawing.Point(15, 146);
+            this.btnChooseDns.Name = "btnChooseDns";
+            this.btnChooseDns.Size = new System.Drawing.Size(56, 23);
+            this.btnChooseDns.TabIndex = 8;
+            this.btnChooseDns.Text = "Change";
+            this.btnChooseDns.UseVisualStyleBackColor = true;
+            this.btnChooseDns.Click += new System.EventHandler(this.btnChooseDns_Click);
+            // 
+            // ctxMenuItemSeparatorForReload
+            // 
+            this.ctxMenuItemSeparatorForReload.Name = "ctxMenuItemSeparatorForReload";
+            this.ctxMenuItemSeparatorForReload.Size = new System.Drawing.Size(149, 6);
+            // 
+            // ctxMenuItemReloadJSON
+            // 
+            this.ctxMenuItemReloadJSON.Name = "ctxMenuItemReloadJSON";
+            this.ctxMenuItemReloadJSON.Size = new System.Drawing.Size(152, 22);
+            this.ctxMenuItemReloadJSON.Text = "Reload";
+            this.ctxMenuItemReloadJSON.Click += new System.EventHandler(this.ctxMenuItemReloadJSON_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 188);
+            this.Controls.Add(this.btnChooseDns);
             this.Controls.Add(this.btnSelectedNic);
             this.Controls.Add(this.lblDns02Current);
             this.Controls.Add(this.lblDns01Current);
@@ -292,11 +237,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Quick DNS Helper";
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.Text = "DNS Helper";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.ctxMenuChooseDns.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,9 +252,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem primarySetupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem secondarySetupToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ctxMenuChooseDns;
         private System.Windows.Forms.TextBox tbDns01;
         private System.Windows.Forms.TextBox tbDns02;
         private System.Windows.Forms.Button btnApplyDns;
@@ -319,15 +264,10 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnSelectedNic;
-        private System.Windows.Forms.ToolStripMenuItem unblockUsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem unlocatorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem unlocatorPrimarySetupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem unlocatorSecondarySetupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem unblockusWebsiteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem unlocatorWebsiteToolStripMenuItem;
+        private System.Windows.Forms.Button btnChooseDns;
+        private System.Windows.Forms.ToolStripSeparator ctxMenuItemSeparatorForReload;
+        private System.Windows.Forms.ToolStripMenuItem ctxMenuItemReloadJSON;
     }
 }
 

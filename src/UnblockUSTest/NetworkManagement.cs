@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
+using System.Management;
 using System.Threading;
-using System.Threading.Tasks;
-using ROOT.CIMV2.Win32;
 
-namespace UnblockUSTest
+namespace DnsHelperUI
 {
-    using System;
-    using System.Management;
-
     namespace WindowsFormsApplication_CS
     {
         class NetworkManagement

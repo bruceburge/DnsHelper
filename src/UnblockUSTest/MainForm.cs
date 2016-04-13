@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using UnblockUSTest.WindowsFormsApplication_CS;
+using DnsHelperUI.WindowsFormsApplication_CS;
+using Newtonsoft.Json;
 
-namespace UnblockUSTest
+namespace DnsHelperUI
 {
     public partial class MainForm : Form
     {
@@ -24,6 +22,17 @@ namespace UnblockUSTest
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Append the version number to the form title
+            var version = typeof(MainForm).Assembly.GetName().Version;
+            if (version != null)
+                this.Text += $" | v{version}";
+
+            // Load the DNS server config from the file
+            ReloadContextMenuItems();
 
             // Discover the current nic, just naively select the first one 
             // (this will not work on systems with multiple enabled NIC's)
@@ -110,34 +119,93 @@ namespace UnblockUSTest
             Process.Start("ncpa.cpl");
         }
 
-        private void primarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnChooseDns_Click(object sender, EventArgs e)
         {
-            SetDnsTextBoxValues("208.122.23.23", "208.122.23.22");
+            // Invoke the context menu on left mouse as well as right, needs a work-around due to bugs with the menu
+            // not disappearing propertly when clicked outside of it, caching the method invocation first
+            this.ctxMenuChooseDns.Show(btnChooseDns, 10, 10);
         }
 
-        private void secondarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ctxMenuItemReloadJSON_Click(object sender, EventArgs e)
         {
-            SetDnsTextBoxValues("64.145.73.5", "209.107.219.5");
+            ReloadContextMenuItems();
         }
 
-        private void unlocatorPrimarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadContextMenuItems()
         {
-            SetDnsTextBoxValues("185.37.37.37", "185.37.39.39");
+            try
+            {
+                var json = LoadJsonData("dns.json");
+                if (json == null)
+                    return;
+
+                // Remove stuff from the context menu
+                ctxMenuChooseDns.Items.Clear();
+                
+                foreach (var entry in json)
+                {
+                    ctxMenuChooseDns.Items.Add(CreateSubMenu(entry));
+                }
+
+                // Add the fixed items at the end
+                ctxMenuChooseDns.Items.Add(ctxMenuItemSeparatorForReload);
+                ctxMenuChooseDns.Items.Add(ctxMenuItemReloadJSON);
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.ToString());
+                MessageBox.Show(this, "Error loading DNS information from dns.json: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void unlocatorSecondarySetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private ToolStripMenuItem CreateSubMenu(DnsProvider entry)
         {
-            SetDnsTextBoxValues("209.177.145.30", "209.177.145.30");
+            var sub = new ToolStripMenuItem(entry.Title);
+            foreach (var server in entry.Servers)
+            {
+                var item = new ToolStripMenuItem(server.Title){ Tag = server };
+                item.Click += (sender, args) =>
+                {
+                    var data = ((ToolStripMenuItem)sender)?.Tag as DnsServers;
+                    if (data != null)
+                        SetDnsTextBoxValues(data.Dns1, data.Dns2);
+                };
+                sub.DropDownItems.Add(item);
+            }
+
+            if (!string.IsNullOrWhiteSpace(entry.Website) && Uri.IsWellFormedUriString(entry.Website, UriKind.Absolute))
+            { 
+                // Add separator
+                sub.DropDownItems.Add(new ToolStripSeparator());
+
+                // Add website if available
+                var web = new ToolStripMenuItem("Website") { Tag = entry.Website };
+                web.Click += (sender, args) =>
+                {
+                    var data = ((ToolStripMenuItem)sender)?.Tag as string;
+                    if (data != null)
+                        Process.Start(data);  // TODO: Defensive coding around non URLs!!!!
+                };
+                sub.DropDownItems.Add(web);
+            }
+
+            return sub;
         }
 
-        private void unblockusWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
+        private List<DnsProvider> LoadJsonData(string jsonFilePath)
         {
-            Process.Start("https://www.unblock-us.com/");
-        }
-
-        private void unlocatorWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://unlocator.com");
+            try
+            {
+                using (var sr = new StreamReader(jsonFilePath))
+                {
+                    return JsonConvert.DeserializeObject<List<DnsProvider>>(sr.ReadToEnd());
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.ToString());
+                return null;
+            }
         }
     }
 }

@@ -1,11 +1,8 @@
-﻿namespace ROOT.CIMV2.Win32 {
-    using System;
-    using System.ComponentModel;
-    using System.Management;
-    using System.Collections;
-    using System.Globalization;
-    
-    
+﻿using System.Collections;
+using System.ComponentModel;
+using System.Management;
+
+namespace DnsHelperUI {
     // Functions ShouldSerialize<PropertyName> are functions used by VS property browser to check if a particular property has to be serialized. These functions are added for all ValueType properties ( properties of type Int32, BOOL etc.. which cannot be set to null). These functions use Is<PropertyName>Null function. These functions are also used in the TypeConverter implementation for the properties to check for NULL value of property so that an empty value can be shown in Property browser in case of Drag and Drop in Visual studio.
     // Functions Is<PropertyName>Null() are used to check if a property is NULL.
     // Functions Reset<PropertyName> are added for Nullable Read/Write properties. These functions are used by VS designer in property browser to set a property to NULL.
