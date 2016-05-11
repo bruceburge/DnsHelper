@@ -126,6 +126,17 @@ namespace DnsHelperUI
             this.ctxMenuChooseDns.Show(btnChooseDns, 10, 10);
         }
 
+        private void ctxMenuItemEditJSON_Click(object sender, EventArgs e)
+        {
+            EditJSONFile();
+        }
+
+        private void EditJSONFile()
+        {
+            //Process.Start(new ProcessStartInfo("dns.json") { Verb = "edit" });
+            Process.Start("notepad", "dns.json");
+        }
+
         private void ctxMenuItemReloadJSON_Click(object sender, EventArgs e)
         {
             ReloadContextMenuItems();
@@ -149,7 +160,7 @@ namespace DnsHelperUI
 
                 // Add the fixed items at the end
                 ctxMenuChooseDns.Items.Add(ctxMenuItemSeparatorForReload);
-                ctxMenuChooseDns.Items.Add(ctxMenuItemReloadJSON);
+                ctxMenuChooseDns.Items.Add(ctxMenuItemAdvanced);
             }
             catch (Exception ex)
             {
@@ -207,5 +218,7 @@ namespace DnsHelperUI
                 return null;
             }
         }
+
+        
     }
 }

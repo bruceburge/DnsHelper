@@ -35,6 +35,10 @@ namespace DnsHelperUI
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ctxMenuChooseDns = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxMenuItemSeparatorForReload = new System.Windows.Forms.ToolStripSeparator();
+            this.ctxMenuItemAdvanced = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxMenuItemEditJSON = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxMenuItemReloadJSON = new System.Windows.Forms.ToolStripMenuItem();
             this.tbDns01 = new System.Windows.Forms.TextBox();
             this.tbDns02 = new System.Windows.Forms.TextBox();
             this.btnApplyDns = new System.Windows.Forms.Button();
@@ -48,8 +52,6 @@ namespace DnsHelperUI
             this.btnSelectedNic = new System.Windows.Forms.Button();
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChooseDns = new System.Windows.Forms.Button();
-            this.ctxMenuItemSeparatorForReload = new System.Windows.Forms.ToolStripSeparator();
-            this.ctxMenuItemReloadJSON = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxMenuChooseDns.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,9 +77,37 @@ namespace DnsHelperUI
             // 
             this.ctxMenuChooseDns.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctxMenuItemSeparatorForReload,
-            this.ctxMenuItemReloadJSON});
+            this.ctxMenuItemAdvanced});
             this.ctxMenuChooseDns.Name = "contextMenuStrip1";
-            this.ctxMenuChooseDns.Size = new System.Drawing.Size(153, 54);
+            this.ctxMenuChooseDns.Size = new System.Drawing.Size(128, 32);
+            // 
+            // ctxMenuItemSeparatorForReload
+            // 
+            this.ctxMenuItemSeparatorForReload.Name = "ctxMenuItemSeparatorForReload";
+            this.ctxMenuItemSeparatorForReload.Size = new System.Drawing.Size(124, 6);
+            // 
+            // ctxMenuItemAdvanced
+            // 
+            this.ctxMenuItemAdvanced.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxMenuItemEditJSON,
+            this.ctxMenuItemReloadJSON});
+            this.ctxMenuItemAdvanced.Name = "ctxMenuItemAdvanced";
+            this.ctxMenuItemAdvanced.Size = new System.Drawing.Size(127, 22);
+            this.ctxMenuItemAdvanced.Text = "Advanced";
+            // 
+            // ctxMenuItemEditJSON
+            // 
+            this.ctxMenuItemEditJSON.Name = "ctxMenuItemEditJSON";
+            this.ctxMenuItemEditJSON.Size = new System.Drawing.Size(152, 22);
+            this.ctxMenuItemEditJSON.Text = "&Edit...";
+            this.ctxMenuItemEditJSON.Click += new System.EventHandler(this.ctxMenuItemEditJSON_Click);
+            // 
+            // ctxMenuItemReloadJSON
+            // 
+            this.ctxMenuItemReloadJSON.Name = "ctxMenuItemReloadJSON";
+            this.ctxMenuItemReloadJSON.Size = new System.Drawing.Size(152, 22);
+            this.ctxMenuItemReloadJSON.Text = "Reload";
+            this.ctxMenuItemReloadJSON.Click += new System.EventHandler(this.ctxMenuItemReloadJSON_Click);
             // 
             // tbDns01
             // 
@@ -136,9 +166,9 @@ namespace DnsHelperUI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(208, 48);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Current Status:";
+            this.label4.Text = "Current Settings:";
             // 
             // lblDns01Current
             // 
@@ -200,23 +230,11 @@ namespace DnsHelperUI
             this.btnChooseDns.ContextMenuStrip = this.ctxMenuChooseDns;
             this.btnChooseDns.Location = new System.Drawing.Point(15, 146);
             this.btnChooseDns.Name = "btnChooseDns";
-            this.btnChooseDns.Size = new System.Drawing.Size(56, 23);
+            this.btnChooseDns.Size = new System.Drawing.Size(67, 23);
             this.btnChooseDns.TabIndex = 8;
             this.btnChooseDns.Text = "Change";
             this.btnChooseDns.UseVisualStyleBackColor = true;
             this.btnChooseDns.Click += new System.EventHandler(this.btnChooseDns_Click);
-            // 
-            // ctxMenuItemSeparatorForReload
-            // 
-            this.ctxMenuItemSeparatorForReload.Name = "ctxMenuItemSeparatorForReload";
-            this.ctxMenuItemSeparatorForReload.Size = new System.Drawing.Size(149, 6);
-            // 
-            // ctxMenuItemReloadJSON
-            // 
-            this.ctxMenuItemReloadJSON.Name = "ctxMenuItemReloadJSON";
-            this.ctxMenuItemReloadJSON.Size = new System.Drawing.Size(152, 22);
-            this.ctxMenuItemReloadJSON.Text = "Reload";
-            this.ctxMenuItemReloadJSON.Click += new System.EventHandler(this.ctxMenuItemReloadJSON_Click);
             // 
             // MainForm
             // 
@@ -239,7 +257,6 @@ namespace DnsHelperUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "DNS Helper";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -268,6 +285,8 @@ namespace DnsHelperUI
         private System.Windows.Forms.Button btnChooseDns;
         private System.Windows.Forms.ToolStripSeparator ctxMenuItemSeparatorForReload;
         private System.Windows.Forms.ToolStripMenuItem ctxMenuItemReloadJSON;
+        private ToolStripMenuItem ctxMenuItemAdvanced;
+        private ToolStripMenuItem ctxMenuItemEditJSON;
     }
 }
 
