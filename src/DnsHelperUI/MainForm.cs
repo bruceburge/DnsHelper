@@ -79,6 +79,7 @@ namespace DnsHelperUI
         {
             UpdateCurrentDNSLabelValues(new[] { "(Waiting)", "(Waiting)"});
             NetworkManagement.SetNameservers(CurrentNic, null, restart: true);
+            tbDns01.Text = tbDns02.Text = "";
             RefreshDNSValues();
         }
 
@@ -174,12 +175,17 @@ namespace DnsHelperUI
             var sub = new ToolStripMenuItem(entry.Title);
             foreach (var server in entry.Servers)
             {
-                var item = new ToolStripMenuItem(server.Title){ Tag = server };
+                var item = new ToolStripMenuItem(server.Title){ Tag = new Tuple<string, DnsServers>(entry.IpUpdateUrl, server) };
                 item.Click += (sender, args) =>
                 {
-                    var data = ((ToolStripMenuItem)sender)?.Tag as DnsServers;
+                    var data = ((ToolStripMenuItem)sender)?.Tag as Tuple<string, DnsServers>;
                     if (data != null)
-                        SetDnsTextBoxValues(data.Dns1, data.Dns2);
+                    {
+                        SetDnsTextBoxValues(data.Item2.Dns1, data.Item2.Dns2);
+                        // If there is a url specified in the string tuple item then it is a dns update url
+                        // which should be visited right now
+
+                    }
                 };
                 sub.DropDownItems.Add(item);
             }
