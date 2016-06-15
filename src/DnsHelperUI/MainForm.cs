@@ -175,7 +175,7 @@ namespace DnsHelperUI
             var sub = new ToolStripMenuItem(entry.Title);
             foreach (var server in entry.Servers)
             {
-                var item = new ToolStripMenuItem(server.Title){ Tag = new Tuple<string, DnsServers>(entry.IpUpdateUrl, server) };
+                var item = new ToolStripMenuItem(server.Title){ Tag = new Tuple<string, DnsServers>(""/*entry.IpUpdateUrl*/, server) };
                 item.Click += (sender, args) =>
                 {
                     var data = ((ToolStripMenuItem)sender)?.Tag as Tuple<string, DnsServers>;
