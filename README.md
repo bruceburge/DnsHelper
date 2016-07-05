@@ -3,6 +3,10 @@ Utility application to quickly swap between DNS servers for services such as [ht
 
 This utility is in no way affiliated with any of the companies providing the DNS services. It is a custom tool I made as I wanted a simple way to switch between different DNS values quickly.
 
+<p align="center">
+  <a href="https://www.paypal.me/sverrirs/1.5" target="_blank"><img border="0" src="https://www.paypalobjects.com/en_US/i/btn/x-click-but21.gif" alt="Like my work? You can donate to this project using PayPal" title="Like my work? You can donate to this project using PayPal"></a>
+</p>
+
 ![Demo](https://raw.githubusercontent.com/sverrirs/DnsHelper/master/examples/v4.1/demo01.gif "Animated demonstration of the tool")
 
 # Download
