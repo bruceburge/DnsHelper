@@ -49,10 +49,10 @@ namespace DnsHelperUI
             this.lblDns02Current = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnShowConnections = new System.Windows.Forms.Button();
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChooseDns = new System.Windows.Forms.Button();
             this.cmbNics = new System.Windows.Forms.ComboBox();
-            this.btnShowConnections = new System.Windows.Forms.Button();
             this.ctxMenuChooseDns.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -206,6 +206,17 @@ namespace DnsHelperUI
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnShowConnections
+            // 
+            this.btnShowConnections.Location = new System.Drawing.Point(345, 13);
+            this.btnShowConnections.Name = "btnShowConnections";
+            this.btnShowConnections.Size = new System.Drawing.Size(29, 23);
+            this.btnShowConnections.TabIndex = 10;
+            this.btnShowConnections.Text = "...";
+            this.toolTip1.SetToolTip(this.btnShowConnections, "Open the Windows Network Settings");
+            this.btnShowConnections.UseVisualStyleBackColor = true;
+            this.btnShowConnections.Click += new System.EventHandler(this.btnOpenConnectionList_Click);
+            // 
             // dToolStripMenuItem
             // 
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
@@ -226,23 +237,14 @@ namespace DnsHelperUI
             // cmbNics
             // 
             this.cmbNics.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbNics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNics.FormattingEnabled = true;
             this.cmbNics.Location = new System.Drawing.Point(15, 13);
             this.cmbNics.Name = "cmbNics";
-            this.cmbNics.Size = new System.Drawing.Size(278, 21);
+            this.cmbNics.Size = new System.Drawing.Size(324, 24);
             this.cmbNics.TabIndex = 9;
             this.cmbNics.SelectedIndexChanged += new System.EventHandler(this.cmbNics_SelectedIndexChanged);
-            // 
-            // btnShowConnections
-            // 
-            this.btnShowConnections.Location = new System.Drawing.Point(299, 13);
-            this.btnShowConnections.Name = "btnShowConnections";
-            this.btnShowConnections.Size = new System.Drawing.Size(75, 23);
-            this.btnShowConnections.TabIndex = 10;
-            this.btnShowConnections.Text = "Connections";
-            this.toolTip1.SetToolTip(this.btnShowConnections, "Clear DNS values and set to obtain automatically");
-            this.btnShowConnections.UseVisualStyleBackColor = true;
-            this.btnShowConnections.Click += new System.EventHandler(this.btnOpenConnectionList_Click);
             // 
             // MainForm
             // 
