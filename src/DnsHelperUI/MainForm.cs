@@ -17,7 +17,7 @@ namespace DnsHelperUI
         /// <summary>
         /// The currently selected Network interface card
         /// </summary>
-        public string CurrentNic { get { return btnSelectedNic.Text; } set { btnSelectedNic.Text = value; } }
+        public string CurrentNic; //{ get { return btnSelectedNic.Text; } set { btnSelectedNic.Text = value; } }
 
         public MainForm()
         {
@@ -34,9 +34,23 @@ namespace DnsHelperUI
             // Load the DNS server config from the file
             ReloadContextMenuItems();
 
-            // Discover the current nic, just naively select the first one 
-            // (this will not work on systems with multiple enabled NIC's)
-            CurrentNic = NetworkManagement.GetAllNicDescriptions().FirstOrDefault();
+            // Get all the nics and load them into a drop down, 
+            // if we have any NICs, fill dropdown and 
+            // select the first one from the list as current.
+            var nics = NetworkManagement.GetAllNicDescriptions();
+            
+            if (nics.Count() > 0)
+            {
+                CurrentNic = nics.FirstOrDefault();
+                cmbNics.Items.AddRange(nics);
+            }
+            else
+            {
+                CurrentNic = "No available NiCs";
+                cmbNics.Items.Add("No available NiCs");
+            }
+
+            cmbNics.SelectedIndex = 0;
 
             // Update the DNS values to the currently applied ones
             var dnsServers = RefreshDNSValues();
@@ -114,7 +128,7 @@ namespace DnsHelperUI
             return IPAddress.TryParse(value, out address) && address.AddressFamily == AddressFamily.InterNetwork;
         }
 
-        private void btnSelectedNic_Click(object sender, EventArgs e)
+        private void btnOpenConnectionList_Click(object sender, EventArgs e)
         {
             // Open the network connections window
             Process.Start("ncpa.cpl");
@@ -225,6 +239,15 @@ namespace DnsHelperUI
             }
         }
 
-        
+        private void cmbNics_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            CurrentNic = cmbNics.Items[cmbNics.SelectedIndex].ToString();
+
+            // Update the DNS values to the currently applied ones
+            var dnsServers = RefreshDNSValues();
+            SetDnsTextBoxValues(dnsServers != null && dnsServers.Length > 0 ? dnsServers[0] : string.Empty,
+                                dnsServers != null && dnsServers.Length > 1 ? dnsServers[1] : string.Empty);
+        }
     }
 }

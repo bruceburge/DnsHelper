@@ -49,9 +49,10 @@ namespace DnsHelperUI
             this.lblDns02Current = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnSelectedNic = new System.Windows.Forms.Button();
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChooseDns = new System.Windows.Forms.Button();
+            this.cmbNics = new System.Windows.Forms.ComboBox();
+            this.btnShowConnections = new System.Windows.Forms.Button();
             this.ctxMenuChooseDns.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,14 +99,14 @@ namespace DnsHelperUI
             // ctxMenuItemEditJSON
             // 
             this.ctxMenuItemEditJSON.Name = "ctxMenuItemEditJSON";
-            this.ctxMenuItemEditJSON.Size = new System.Drawing.Size(152, 22);
+            this.ctxMenuItemEditJSON.Size = new System.Drawing.Size(110, 22);
             this.ctxMenuItemEditJSON.Text = "&Edit...";
             this.ctxMenuItemEditJSON.Click += new System.EventHandler(this.ctxMenuItemEditJSON_Click);
             // 
             // ctxMenuItemReloadJSON
             // 
             this.ctxMenuItemReloadJSON.Name = "ctxMenuItemReloadJSON";
-            this.ctxMenuItemReloadJSON.Size = new System.Drawing.Size(152, 22);
+            this.ctxMenuItemReloadJSON.Size = new System.Drawing.Size(110, 22);
             this.ctxMenuItemReloadJSON.Text = "Reload";
             this.ctxMenuItemReloadJSON.Click += new System.EventHandler(this.ctxMenuItemReloadJSON_Click);
             // 
@@ -205,20 +206,6 @@ namespace DnsHelperUI
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // btnSelectedNic
-            // 
-            this.btnSelectedNic.FlatAppearance.BorderSize = 0;
-            this.btnSelectedNic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectedNic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectedNic.Location = new System.Drawing.Point(12, 8);
-            this.btnSelectedNic.Name = "btnSelectedNic";
-            this.btnSelectedNic.Size = new System.Drawing.Size(358, 33);
-            this.btnSelectedNic.TabIndex = 7;
-            this.btnSelectedNic.Text = "... nic ...";
-            this.btnSelectedNic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelectedNic.UseVisualStyleBackColor = true;
-            this.btnSelectedNic.Click += new System.EventHandler(this.btnSelectedNic_Click);
-            // 
             // dToolStripMenuItem
             // 
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
@@ -236,13 +223,35 @@ namespace DnsHelperUI
             this.btnChooseDns.UseVisualStyleBackColor = true;
             this.btnChooseDns.Click += new System.EventHandler(this.btnChooseDns_Click);
             // 
+            // cmbNics
+            // 
+            this.cmbNics.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNics.FormattingEnabled = true;
+            this.cmbNics.Location = new System.Drawing.Point(15, 13);
+            this.cmbNics.Name = "cmbNics";
+            this.cmbNics.Size = new System.Drawing.Size(278, 21);
+            this.cmbNics.TabIndex = 9;
+            this.cmbNics.SelectedIndexChanged += new System.EventHandler(this.cmbNics_SelectedIndexChanged);
+            // 
+            // btnShowConnections
+            // 
+            this.btnShowConnections.Location = new System.Drawing.Point(299, 13);
+            this.btnShowConnections.Name = "btnShowConnections";
+            this.btnShowConnections.Size = new System.Drawing.Size(75, 23);
+            this.btnShowConnections.TabIndex = 10;
+            this.btnShowConnections.Text = "Connections";
+            this.toolTip1.SetToolTip(this.btnShowConnections, "Clear DNS values and set to obtain automatically");
+            this.btnShowConnections.UseVisualStyleBackColor = true;
+            this.btnShowConnections.Click += new System.EventHandler(this.btnOpenConnectionList_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 188);
+            this.Controls.Add(this.btnShowConnections);
+            this.Controls.Add(this.cmbNics);
             this.Controls.Add(this.btnChooseDns);
-            this.Controls.Add(this.btnSelectedNic);
             this.Controls.Add(this.lblDns02Current);
             this.Controls.Add(this.lblDns01Current);
             this.Controls.Add(this.label4);
@@ -280,13 +289,14 @@ namespace DnsHelperUI
         private System.Windows.Forms.Label lblDns02Current;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button btnSelectedNic;
         private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
         private System.Windows.Forms.Button btnChooseDns;
         private System.Windows.Forms.ToolStripSeparator ctxMenuItemSeparatorForReload;
         private System.Windows.Forms.ToolStripMenuItem ctxMenuItemReloadJSON;
         private ToolStripMenuItem ctxMenuItemAdvanced;
         private ToolStripMenuItem ctxMenuItemEditJSON;
+        private ComboBox cmbNics;
+        private Button btnShowConnections;
     }
 }
 
